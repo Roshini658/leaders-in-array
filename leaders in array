@@ -1,0 +1,28 @@
+def findLeadersBruteForce(arr):
+    leaders = []
+    n = len(arr)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if arr[i] < arr[j]:
+                break
+        else:
+            leaders.append(arr[i])
+    return leaders
+
+# Example
+arr = [16, 17, 4, 3, 5, 2]
+print(findLeadersBruteForce(arr))  # Output: [17, 5, 2]
+def findLeadersOptimal(arr):
+    n = len(arr)
+    leaders = []
+    max_from_right = float('-inf')
+    for i in range(n - 1, -1, -1):
+        if arr[i] >= max_from_right:
+            leaders.append(arr[i])
+            max_from_right = arr[i]
+    leaders.reverse()
+    return leaders
+
+# Example
+arr = [16, 17, 4, 3, 5, 2]
+print(findLeadersOptimal(arr))  # Output: [17, 5, 2]
